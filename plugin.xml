@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="com.nover.RestRequest"
+  version="0.1">
+
+    <name>RESTFUL Request</name>
+ 
+    <description>
+        Cordova / Phonegap plugin for communicating with RESTFUL servers (GET, POST, PUT, DELETE)
+    </description>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module src="www/restReqeust.js" name="RestRequestPlugin">
+        <clobbers target="plugins.RestRequestPlugin" />
+    </js-module>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="RestRequestPlugin">
+                <param name="ios-package" value="RestRequestPlugin"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/RestRequestPlugin.h" />
+        <source-file src="src/ios/RestRequestPlugin.m" />
+        
+        <header-file src="src/ios/HTTPManager.h" />
+        <source-file src="src/ios/HTTPManager.m" />
+
+        <header-file src="src/ios/AFNetworking/AFHTTPRequestOperation.h" />
+        <source-file src="src/ios/AFNetworking/AFHTTPRequestOperation.m" />
+
+        <header-file src="src/ios/AFNetworking/AFHTTPRequestOperationManager.h" />
+        <source-file src="src/ios/AFNetworking/AFHTTPRequestOperationManager.m" />
+
+        <header-file src="src/ios/AFNetworking/AFHTTPSessionManager.h" />
+        <source-file src="src/ios/AFNetworking/AFHTTPSessionManager.m" />
+
+        <header-file src="src/ios/AFNetworking/AFNetworking.h" />
+
+        <header-file src="src/ios/AFNetworking/AFNetworkReachabilityManager.h" />
+        <source-file src="src/ios/AFNetworking/AFNetworkReachabilityManager.m" />
+
+        <header-file src="src/ios/AFNetworking/AFSecurityPolicy.h" />
+        <source-file src="src/ios/AFNetworking/AFSecurityPolicy.m" />
+
+        <header-file src="src/ios/AFNetworking/AFURLConnectionOperation.h" />
+        <source-file src="src/ios/AFNetworking/AFURLConnectionOperation.m" />
+
+        <header-file src="src/ios/AFNetworking/AFURLRequestSerialization.h" />
+        <source-file src="src/ios/AFNetworking/AFURLRequestSerialization.m" />
+
+        <header-file src="src/ios/AFNetworking/AFURLResponseSerialization.h" />
+        <source-file src="src/ios/AFNetworking/AFURLResponseSerialization.m" />
+
+        <header-file src="src/ios/AFNetworking/AFURLSessionManager.h" />
+        <source-file src="src/ios/AFNetworking/AFURLSessionManager.m" />
+
+        <framework src="Security.framework" />
+    </platform>
+
+    <!--android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="RestRequestPlugin">
+                <param name="android-package" value="com.nover.RestRequestPlugin"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/com/nover/RestRequest/RestRequest.java" target-dir="src/com/nover" />
+        <source-file src="src/android/com/nover/RestRequest/RestRequestGet.java" target-dir="src/com/nover" />
+        <source-file src="src/android/com/nover/RestRequest/RestRequestPost.java" target-dir="src/com/nover" />
+        <source-file src="src/android/com/nover/RestRequest/RestRequestPut.java" target-dir="src/com/nover" />
+        <source-file src="src/android/com/nover/RestRequest/RestRequestDelete.java" target-dir="src/com/nover" />
+        <source-file src="src/android/com/nover/RestRequest/RestRequestPlugin.java" target-dir="src/com/nover" />
+        <source-file src="src/android/com/nover/RestRequest/HttpRequest.java" target-dir="src/com/github/kevinsawicki/http" />
+    </platform>
+</plugin>
