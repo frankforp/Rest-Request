@@ -14,7 +14,7 @@
         <engine name="cordova" version=">=3.0.0" />
     </engines>
 
-    <js-module src="www/restReqeust.js" name="RestRequestPlugin">
+    <js-module src="www/restRequest.js" name="RestRequestPlugin">
         <clobbers target="plugins.RestRequestPlugin" />
     </js-module>
 
