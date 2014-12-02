@@ -19,7 +19,7 @@ import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
  
 public class RestRequestPost extends RestRequest implements Runnable {
     public RestRequestPost(String urlString, Map<?, ?> params, CallbackContext callbackContext) {
-        super(urlString, params, headers, callbackContext);
+        super(urlString, params, callbackContext);
     }
     
     @Override

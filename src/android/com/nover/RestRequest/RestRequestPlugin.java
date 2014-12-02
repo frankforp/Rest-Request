@@ -37,7 +37,7 @@ import android.util.Log;
 
 import com.github.kevinsawicki.http.HttpRequest;
 
-public class CordovaHttpPlugin extends CordovaPlugin {
+public class RestRequestPlugin extends CordovaPlugin {
     private static final String TAG = "RestRequest";
 
     @Override
