@@ -23,7 +23,7 @@
 
 @interface HttpManager : NSObject
 
-@property (nonatomic, weak) AFHTTPRequestOperationManager *reqManager;
+@property (nonatomic, strong) AFHTTPRequestOperationManager *reqManager;
 
 + (HttpManager *)sharedManager;
 
