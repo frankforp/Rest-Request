@@ -64,10 +64,10 @@ if (typeof angular !== "undefined") {
                 return makePromise(http.post, [url, params], true);
             },
             put: function(url, params) {
-                return makePromise(http.get, [url, params], true);
+                return makePromise(http.put, [url, params], true);
             },
             delete: function(url, params) {
-                return makePromise(http.get, [url, params], true);
+                return makePromise(http.delete, [url, params], true);
             },
         };
         return restRequest;
