@@ -24,7 +24,7 @@
 
 static HttpManager *instance;
 
-+ (AppManager *)HttpManager {
++ (HttpManager *)HttpManager {
     @synchronized(self) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
