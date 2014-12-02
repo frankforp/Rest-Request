@@ -24,7 +24,7 @@
 
 static HttpManager *instance;
 
-+ (HttpManager *)HttpManager {
++ (HttpManager *)sharedManager {
     @synchronized(self) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
@@ -45,8 +45,8 @@ static HttpManager *instance;
 
 - (id)init {
     if (self = [super init]) {
-        reqManager = [AFHTTPRequestOperationManager manager];
-        reqManager.responseSerializer = [AFJSONResponseSerializer serializer];
+        _reqManager = [AFHTTPRequestOperationManager manager];
+        _reqManager.responseSerializer = [AFJSONResponseSerializer serializer];
     }
     
     return self;

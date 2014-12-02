@@ -21,9 +21,9 @@
 #import <Foundation/Foundation.h>
 #import "AFHTTPRequestOperationManager.h"
 
-@interface HttpManager : NSObject {
-	AFHTTPRequestOperationManager *reqManager;
-} 
+@interface HttpManager : NSObject
+
+@property (nonatomic, weak) AFHTTPRequestOperationManager *reqManager;
 
 + (HttpManager *)sharedManager;
 
