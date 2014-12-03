@@ -47,6 +47,7 @@ static HttpManager *instance;
     if (self = [super init]) {
         _reqManager = [AFHTTPRequestOperationManager manager];
         _reqManager.responseSerializer = [AFJSONResponseSerializer serializer];
+        _reqManager.requestSerializer = [AFJSONRequestSerializer serializer];
     }
     
     return self;
