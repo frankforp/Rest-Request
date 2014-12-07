@@ -1,7 +1,7 @@
 /**
  * A HTTP plugin for Cordova / Phonegap
  */
-package com.synconset;
+package com.nover;
 
 import java.net.UnknownHostException;
 import java.util.Map;
@@ -9,8 +9,6 @@ import java.util.Map;
 import org.apache.cordova.CallbackContext;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import javax.net.ssl.SSLHandshakeException;
 
 import android.util.Log;
 
@@ -26,6 +24,7 @@ public class RestRequestPut extends RestRequest implements Runnable {
     public void run() {
         try {
             HttpRequest request = HttpRequest.put(this.getUrlString());
+            request.acceptJson();
             request.acceptCharset(CHARSET);
             request.form(this.getParams());
             int code = request.code();
@@ -42,13 +41,7 @@ public class RestRequestPut extends RestRequest implements Runnable {
         } catch (JSONException e) {
             this.respondWithError("There was an error generating the response");
         }  catch (HttpRequestException e) {
-            if (e.getCause() instanceof UnknownHostException) {
-                this.respondWithError(0, "The host could not be resolved");
-            } else if (e.getCause() instanceof SSLHandshakeException) {
-                this.respondWithError("SSL handshake failed");
-            } else {
-                this.respondWithError("There was an error with the request");
-            }
+            this.respondWithError("There was an error with the request");
         }
     }
 }

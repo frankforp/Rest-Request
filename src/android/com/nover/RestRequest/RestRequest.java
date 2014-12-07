@@ -1,7 +1,7 @@
 /**
  * A HTTP plugin for Cordova / Phonegap
  */
-package com.synconset;
+package com.nover;
 
 import org.apache.cordova.CallbackContext;
 
@@ -18,10 +18,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.HostnameVerifier;
 
 import java.util.Iterator;
 
