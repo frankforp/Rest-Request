@@ -72,11 +72,7 @@
             </feature>
         </config-file>
 
-        <source-file src="src/android/com/nover/RestRequest/RestRequest.java" target-dir="src/com/nover" />
-        <source-file src="src/android/com/nover/RestRequest/RestRequestGet.java" target-dir="src/com/nover" />
-        <source-file src="src/android/com/nover/RestRequest/RestRequestPost.java" target-dir="src/com/nover" />
-        <source-file src="src/android/com/nover/RestRequest/RestRequestPut.java" target-dir="src/com/nover" />
-        <source-file src="src/android/com/nover/RestRequest/RestRequestDelete.java" target-dir="src/com/nover" />
+        <source-file src="src/android/com/nover/RestRequest/RestRequestClient.java" target-dir="src/com/nover" />
         <source-file src="src/android/com/nover/RestRequest/RestRequestPlugin.java" target-dir="src/com/nover" />
         <source-file src="src/android/com/nover/RestRequest/android-async-http-1.4.6.jar" target-dir="libs" framework="true" />
     </platform>

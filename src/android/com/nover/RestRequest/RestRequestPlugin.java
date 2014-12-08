@@ -19,12 +19,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.res.AssetManager;
-import android.util.Base64;
-import android.util.Log;
-
-import com.github.kevinsawicki.http.HttpRequest;
-
 public class RestRequestPlugin extends CordovaPlugin {
     private static final String TAG = "RestRequest";
 
@@ -39,30 +33,18 @@ public class RestRequestPlugin extends CordovaPlugin {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
             HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
-
-            RestRequestGet get = new RestRequestGet(urlString, paramsMap, callbackContext);
-            cordova.getThreadPool().execute(get);
         } else if (action.equals("post")) {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
             HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
-
-            RestRequestPost post = new RestRequestPost(urlString, paramsMap, callbackContext);
-            cordova.getThreadPool().execute(post);
         } else if (action.equals("put")) {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);;
             HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
-
-            RestRequestPut put = new RestRequestPut(urlString, paramsMap, callbackContext);
-            cordova.getThreadPool().execute(put);
         } else if (action.equals("delete")) {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
             HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
-
-            RestRequestDelete delete = new RestRequestDelete(urlString, paramsMap, callbackContext);
-            cordova.getThreadPool().execute(delete);
         } else {
             return false;
         }
