@@ -1,26 +1,17 @@
-/**
- * A HTTP plugin for Cordova / Phonegap
- */
 package com.nover;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.util.Iterator;
-import java.util.ArrayList;
-import java.util.HashMap;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
-import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaInterface;
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CordovaWebView;
+import java.util.Iterator;
+
+import org.apache.cordova.*;
+import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RestRequestPlugin extends CordovaPlugin {
-    private static final String TAG = "RestRequest";
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -32,33 +23,59 @@ public class RestRequestPlugin extends CordovaPlugin {
         if (action.equals("get")) {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
-            HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
+            RequestParams reqParams = this.toRequestParams(params);
+
+            RestRequestClient.get(urlString, reqParams, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, response));
+                }
+            });
         } else if (action.equals("post")) {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
-            HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
+            RequestParams reqParams = this.toRequestParams(params);
+
+            RestRequestClient.post(urlString, reqParams, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, response));
+                }
+            });
         } else if (action.equals("put")) {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);;
-            HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
+            RequestParams reqParams = this.toRequestParams(params);
+
+            RestRequestClient.put(urlString, reqParams, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, response));
+                }
+            });
         } else if (action.equals("delete")) {
             String urlString = args.getString(0);
-            JSONObject params = args.getJSONObject(1);
-            HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
+
+            RestRequestClient.delete(urlString, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, response));
+                }
+            });
         } else {
             return false;
         }
         return true;
     }
 
-    private HashMap<String, Object> getMapFromJSONObject(JSONObject object) throws JSONException {
-        HashMap<String, Object> map = new HashMap<String, Object>();
+    private RequestParams toRequestParams(JSONObject object) throws JSONException {
+        RequestParams params = new RequestParams();
         Iterator<?> i = object.keys();
 
         while(i.hasNext()) {
             String key = (String)i.next();
-            map.put(key, object.get(key));
+            params.add(key, object.getString(key));
         }
-        return map;
+        return params;
     }
 }

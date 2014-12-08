@@ -11,14 +11,11 @@
     RestRequestPlugin* __weak weakSelf = self;
     
     [manager.reqManager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-        [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
-        [dictionary setObject:responseObject forKey:@"data"];
-        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:responseObject];
         [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-        [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
+        [dictionary setObject:[NSString strinWithFormat:@"%d", operation.response.statusCode] forKey:@"status"];
         [dictionary setObject:[error localizedDescription] forKey:@"error"];
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
         [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -32,14 +29,11 @@
     RestRequestPlugin* __weak weakSelf = self;
     
     [manager.reqManager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-        [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
-        [dictionary setObject:responseObject forKey:@"data"];
-        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:responseObject];
         [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-        [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
+        [dictionary setObject:[NSString strinWithFormat:@"%d", operation.response.statusCode] forKey:@"status"];
         [dictionary setObject:[error localizedDescription] forKey:@"error"];
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
         [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -53,14 +47,11 @@
     RestRequestPlugin* __weak weakSelf = self;
     
     [manager.reqManager PUT:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-        [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
-        [dictionary setObject:responseObject forKey:@"data"];
-        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:responseObject];
         [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-        [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
+        [dictionary setObject:[NSString strinWithFormat:@"%d", operation.response.statusCode] forKey:@"status"];
         [dictionary setObject:[error localizedDescription] forKey:@"error"];
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
         [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -74,14 +65,11 @@
     RestRequestPlugin* __weak weakSelf = self;
     
     [manager.reqManager DELETE:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-        [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
-        [dictionary setObject:responseObject forKey:@"data"];
-        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:responseObject];
         [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-        [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
+        [dictionary setObject:[NSString strinWithFormat:@"%d", operation.response.statusCode] forKey:@"status"];
         [dictionary setObject:[error localizedDescription] forKey:@"error"];
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
         [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
