@@ -78,6 +78,6 @@
         <source-file src="src/android/com/nover/RestRequest/RestRequestPut.java" target-dir="src/com/nover" />
         <source-file src="src/android/com/nover/RestRequest/RestRequestDelete.java" target-dir="src/com/nover" />
         <source-file src="src/android/com/nover/RestRequest/RestRequestPlugin.java" target-dir="src/com/nover" />
-        <source-file src="src/android/com/nover/RestRequest/android-async-http-1.4.6.java" target-dir="libs" framework="true" />
+        <source-file src="src/android/com/nover/RestRequest/android-async-http-1.4.6.jar" target-dir="libs" framework="true" />
     </platform>
 </plugin>
