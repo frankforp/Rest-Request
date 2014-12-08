@@ -16,6 +16,7 @@ public class RestRequestPlugin extends CordovaPlugin {
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
+        RestRequestClient.requestJSONHeader();
     }
 
     @Override
