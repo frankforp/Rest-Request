@@ -1,9 +1,11 @@
 package com.nover;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
-import java.util.Iterator;
+import com.nover.Blaster.CordovaApp;
 
 import org.apache.cordova.*;
 import org.apache.http.Header;
@@ -11,12 +13,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Iterator;
+
 public class RestRequestPlugin extends CordovaPlugin {
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-        RestRequestClient.requestJSONHeader();
     }
 
     @Override
@@ -35,9 +40,9 @@ public class RestRequestPlugin extends CordovaPlugin {
         } else if (action.equals("post")) {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
-            RequestParams reqParams = this.toRequestParams(params);
+            Context context = this.cordova.getActivity().getApplicationContext();
 
-            RestRequestClient.post(urlString, reqParams, new JsonHttpResponseHandler() {
+            RestRequestClient.post(context, urlString, params, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, response));
@@ -45,10 +50,10 @@ public class RestRequestPlugin extends CordovaPlugin {
             });
         } else if (action.equals("put")) {
             String urlString = args.getString(0);
-            JSONObject params = args.getJSONObject(1);;
-            RequestParams reqParams = this.toRequestParams(params);
+            JSONObject params = args.getJSONObject(1);
+            Context context = this.cordova.getActivity().getApplicationContext();
 
-            RestRequestClient.put(urlString, reqParams, new JsonHttpResponseHandler() {
+            RestRequestClient.put(context, urlString, params, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, response));
@@ -75,7 +80,13 @@ public class RestRequestPlugin extends CordovaPlugin {
 
         while(i.hasNext()) {
             String key = (String)i.next();
-            params.add(key, object.getString(key));
+            String value = object.getString(key);
+            try {
+                value = URLEncoder.encode(value, "utf-8");
+            } catch (UnsupportedEncodingException ex) {
+                Log.d("DEBUG", "Cannot encode string: " + value);
+            }
+            params.add(key, value);
         }
         return params;
     }
