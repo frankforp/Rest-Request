@@ -3,6 +3,10 @@
 
 @implementation RestRequestPlugin
 
+- (void)extiApp {
+    [[NSThread mainThread] exit];
+}
+
 - (void)get:(CDVInvokedUrlCommand *)command {
     HttpManager *manager = [HttpManager sharedManager];
     NSString *url = [command.arguments objectAtIndex:0];

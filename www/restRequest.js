@@ -7,6 +7,9 @@
 var exec = require('cordova/exec');
 
 var http = {
+    exitApp: function() {
+        return exec(null, null, "RestRequestPlugin", "exitApp", []);
+    },
     get: function(url, params, success, failure) {
         return exec(success, failure, "RestRequestPlugin", "get", [url, params]);
     },
