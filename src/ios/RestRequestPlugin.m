@@ -3,8 +3,8 @@
 
 @implementation RestRequestPlugin
 
-- (void)exitApp {
-    [[NSThread mainThread] exit];
+- (void)exitApp:(CDVInvokedUrlCommand *)command {
+    exit(0);
 }
 
 - (void)get:(CDVInvokedUrlCommand *)command {
