@@ -3,7 +3,7 @@
 
 @implementation RestRequestPlugin
 
-- (void)extiApp {
+- (void)exitApp {
     [[NSThread mainThread] exit];
 }
 
