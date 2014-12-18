@@ -36,6 +36,19 @@ public class RestRequestPlugin extends CordovaPlugin {
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, response));
                 }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    PluginResult r = new PluginResult(PluginResult.Status.ERROR, errorResponse);
+                    callbackContext.sendPluginResult(r);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    callbackContext.error(responseString);
+                    PluginResult r = new PluginResult(PluginResult.Status.ERROR);
+                    callbackContext.sendPluginResult(r);
+                }
             });
         } else if (action.equals("post")) {
             String urlString = args.getString(0);
@@ -46,6 +59,19 @@ public class RestRequestPlugin extends CordovaPlugin {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, response));
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    PluginResult r = new PluginResult(PluginResult.Status.ERROR, errorResponse);
+                    callbackContext.sendPluginResult(r);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    callbackContext.error(responseString);
+                    PluginResult r = new PluginResult(PluginResult.Status.ERROR);
+                    callbackContext.sendPluginResult(r);
                 }
             });
         } else if (action.equals("put")) {
@@ -58,6 +84,19 @@ public class RestRequestPlugin extends CordovaPlugin {
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, response));
                 }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    PluginResult r = new PluginResult(PluginResult.Status.ERROR, errorResponse);
+                    callbackContext.sendPluginResult(r);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    callbackContext.error(responseString);
+                    PluginResult r = new PluginResult(PluginResult.Status.ERROR);
+                    callbackContext.sendPluginResult(r);
+                }
             });
         } else if (action.equals("delete")) {
             String urlString = args.getString(0);
@@ -66,6 +105,19 @@ public class RestRequestPlugin extends CordovaPlugin {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, response));
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    PluginResult r = new PluginResult(PluginResult.Status.ERROR, errorResponse);
+                    callbackContext.sendPluginResult(r);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    callbackContext.error(responseString);
+                    PluginResult r = new PluginResult(PluginResult.Status.ERROR);
+                    callbackContext.sendPluginResult(r);
                 }
             });
         } else {
