@@ -68,12 +68,12 @@
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="RestRequestPlugin">
-                <param name="android-package" value="com.nover.RestRequestPlugin"/>
+                <param name="android-package" value="com.nover.RestRequest.RestRequestPlugin"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/com/nover/RestRequest/RestRequestClient.java" target-dir="src/com/nover" />
-        <source-file src="src/android/com/nover/RestRequest/RestRequestPlugin.java" target-dir="src/com/nover" />
-        <source-file src="src/android/com/nover/RestRequest/android-async-http-1.4.6.jar" target-dir="libs" framework="true" />
+        <source-file src="src/android/RestRequestClient.java" target-dir="src/com/nover/RestRequest" />
+        <source-file src="src/android/RestRequestPlugin.java" target-dir="src/com/nover/RestRequest" />
+        <source-file src="src/android/android-async-http-1.4.6.jar" target-dir="libs" framework="true" />
     </platform>
 </plugin>
