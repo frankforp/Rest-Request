@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.nover.Blaster.CordovaApp;
 
 import org.apache.cordova.*;
 import org.apache.http.Header;
