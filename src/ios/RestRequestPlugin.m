@@ -7,6 +7,23 @@
     exit(0);
 }
 
+- (void)askForLocationServices:(CDVInvokedUrlCommand *)command {
+    if(&UIApplicationOpenSettingsURLString != nil) {
+        NSString *title = [command.arguments objectAtIndex:0];
+        NSString *message = [command.arguments objectAtIndex:1];
+        NSString *cancelText = [command.arguments objectAtIndex:2];
+        NSString *okText = [command.arguments objectAtIndex:3];
+        
+        [[[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelText otherButtonTitles:okText, nil] show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    }
+}
+
 - (void)get:(CDVInvokedUrlCommand *)command {
     HttpManager *manager = [HttpManager sharedManager];
     NSString *url = [command.arguments objectAtIndex:0];

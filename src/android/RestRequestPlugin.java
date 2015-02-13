@@ -1,12 +1,21 @@
 package com.nover.RestRequest;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.provider.Settings;
 import android.util.Log;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import org.apache.cordova.*;
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.PluginResult;
 import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -119,6 +128,12 @@ public class RestRequestPlugin extends CordovaPlugin {
                     callbackContext.sendPluginResult(r);
                 }
             });
+        } else if (action.equals("askForLocationServices")) {
+            String title = args.getString(0);
+            String message = args.getString(1);
+            String cancelText = args.getString(2);
+            String okText = args.getString(3);
+            showSettingsAlert(title, message, cancelText, okText);
         } else {
             return false;
         }
@@ -140,5 +155,34 @@ public class RestRequestPlugin extends CordovaPlugin {
             params.add(key, value);
         }
         return params;
+    }
+
+    private void showSettingsAlert(String title, String message, String cancelText, String okText) {
+        final Activity activity = this.cordova.getActivity();
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
+
+        // Setting Dialog Title
+        alertDialog.setTitle(title);
+
+        // Setting Dialog Message
+        alertDialog.setMessage(message);
+
+        // On pressing Settings button
+        alertDialog.setPositiveButton(okText, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int which) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                activity.startActivityForResult(intent, 0);
+            }
+        });
+
+        // on pressing cancel button
+        alertDialog.setNegativeButton(cancelText, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
     }
 }
